@@ -17,7 +17,25 @@
       #!/bin/sh
       
       date > /root/flagfile
+    auto_floating_ip: true
 
-- name: show what we registered
-  debug:
-    msg: "{{myserver}}"
+# Yikes! It looks like nova_compute returns different information
+# depending on whether or not the server existed, so we need two
+# different plays for registerting the ip address.
+
+- name: add host to inventory
+  add_host:
+    hostname: "{{myserver.info.name}}"
+    ansible_ssh_host: "{{myserver.public_ip}}"
+    ansible_ssh_user: centos
+    groups: openstack_nodes
+  when: myserver|changed
+
+- name: add host to inventory
+  add_host:
+    hostname: "{{myserver.info.name}}"
+    ansible_ssh_host: "{{myserver.public_ip.0}}"
+    ansible_ssh_user: centos
+    groups: openstack_nodes
+  when: not myserver|changed
+
