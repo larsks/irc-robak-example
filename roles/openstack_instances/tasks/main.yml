@@ -10,9 +10,9 @@
     image_id: "{{os_image_id}}"
     key_name: "{{os_key_name}}"
     wait_for: 200
-    flavor_id: 2
+    flavor_id: "{{os_flavor_id}}"
     nics:
-      - net-id: 70014eda-8767-4c1d-9d16-37252deea978
+      - net-id: "{{os_network_id}}"
     user_data: |
       #!/bin/sh
       
@@ -27,7 +27,7 @@
   add_host:
     hostname: "{{myserver.info.name}}"
     ansible_ssh_host: "{{myserver.public_ip}}"
-    ansible_ssh_user: centos
+    ansible_ssh_user: fedora
     groups: openstack_nodes
   when: myserver|changed
 
@@ -35,7 +35,7 @@
   add_host:
     hostname: "{{myserver.info.name}}"
     ansible_ssh_host: "{{myserver.public_ip.0}}"
-    ansible_ssh_user: centos
+    ansible_ssh_user: fedora
     groups: openstack_nodes
   when: not myserver|changed
 

@@ -1,6 +1,8 @@
-os_auth_url: http://controller.example.com:5000/v2.0
-os_username: lars
-os_password: SECRET
-os_tenant_name: lars
-os_image_id: b12fe824-c98a-4af5-88a6-b1e11a511724
+os_auth_url: "{{lookup('env', 'OS_AUTH_URL')}}"
+os_username: "{{lookup('env', 'OS_USERNAME')}}"
+os_password: "{{lookup('env', 'OS_PASSWORD')}}"
+os_tenant_name: "{{lookup('env', 'OS_TENANT_NAME')}}"
+os_network_id: "{{lookup('env', 'OS_NETWORK_ID')}}"
+os_image_id: "{{lookup('env', 'OS_IMAGE_ID')}}"
+os_flavor_id: "{{lookup('env', 'OS_FLAVOR_ID')}}"
 os_key_name: lars
