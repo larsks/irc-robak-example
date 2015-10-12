@@ -1,0 +1,4 @@
+- name: launch a nova instance
+  hosts: localhost
+  roles:
+   - openstack_instances

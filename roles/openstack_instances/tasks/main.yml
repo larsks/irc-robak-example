@@ -1,0 +1,23 @@
+- name: create a vm
+  register: myserver
+  nova_compute:
+    state: present
+    auth_url: "{{os_auth_url}}"
+    login_username: "{{os_username}}"
+    login_password: "{{os_password}}"
+    login_tenant_name: "{{os_tenant_name}}"
+    name: larstest
+    image_id: "{{os_image_id}}"
+    key_name: "{{os_key_name}}"
+    wait_for: 200
+    flavor_id: 2
+    nics:
+      - net-id: 70014eda-8767-4c1d-9d16-37252deea978
+    user_data: |
+      #!/bin/sh
+      
+      date > /root/flagfile
+
+- name: show what we registered
+  debug:
+    msg: "{{myserver}}"

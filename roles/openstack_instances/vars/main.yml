@@ -1,0 +1,6 @@
+os_auth_url: http://controller.example.com:5000/v2.0
+os_username: lars
+os_password: SECRET
+os_tenant_name: lars
+os_image_id: b12fe824-c98a-4af5-88a6-b1e11a511724
+os_key_name: lars
