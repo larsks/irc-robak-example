@@ -6,7 +6,7 @@
     login_username: "{{os_username}}"
     login_password: "{{os_password}}"
     login_tenant_name: "{{os_tenant_name}}"
-    name: larstest
+    name: "{{os_host_name}}"
     image_id: "{{os_image_id}}"
     key_name: "{{os_key_name}}"
     wait_for: 200
@@ -17,7 +17,7 @@
       #!/bin/sh
       
       date > /root/flagfile
-    auto_floating_ip: true
+    auto_floating_ip: "{{os_auto_floating}}"
 
 # Yikes! It looks like nova_compute returns different information
 # depending on whether or not the server existed, so we need two

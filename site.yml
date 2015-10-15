@@ -1,7 +1,12 @@
 - name: launch a nova instance
   hosts: localhost
   roles:
-   - openstack_instances
+    - role: openstack_instances
+      os_flavor_id: 2
+      os_host_name: myhost1
+    - role: openstack_instances
+      os_flavor_id: 3
+      os_host_name: myhost2
 
 - hosts: openstack_nodes
   gather_facts: false
@@ -17,9 +22,7 @@
 - hosts: openstack_nodes
   sudo: true
   tasks:
-    - yum:
-        name: "{{item}}"
-        state: latest
+    - command: dnf -y install {{item}}
       with_items:
         - git
         - screen

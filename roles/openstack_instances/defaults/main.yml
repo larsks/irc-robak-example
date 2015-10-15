@@ -5,4 +5,5 @@ os_tenant_name: "{{lookup('env', 'OS_TENANT_NAME')}}"
 os_network_id: "{{lookup('env', 'OS_NETWORK_ID')}}"
 os_image_id: "{{lookup('env', 'OS_IMAGE_ID')}}"
 os_flavor_id: "{{lookup('env', 'OS_FLAVOR_ID')}}"
-os_key_name: lars
+os_key_name: "{{lookup('env', 'OS_KEY_NAME')}}"
+os_auto_floating: true
